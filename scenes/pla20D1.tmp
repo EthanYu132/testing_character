@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://d20cffaskqt6e"]
+
+[ext_resource type="Texture2D" uid="uid://bjfp1khnutawq" path="res://assets/Soldier/Soldier/Soldier-Walk.png" id="1_mptqy"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_rtgwd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbahb"]
+atlas = ExtResource("1_mptqy")
+region = Rect2(0, 40, 100, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sl4d4"]
+atlas = ExtResource("1_mptqy")
+region = Rect2(100, 40, 100, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsinr"]
+atlas = ExtResource("1_mptqy")
+region = Rect2(200, 40, 100, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwk0t"]
+atlas = ExtResource("1_mptqy")
+region = Rect2(300, 40, 100, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7rjb"]
+atlas = ExtResource("1_mptqy")
+region = Rect2(400, 40, 100, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bim68"]
+atlas = ExtResource("1_mptqy")
+region = Rect2(500, 40, 100, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mooyc"]
+atlas = ExtResource("1_mptqy")
+region = Rect2(600, 40, 100, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gljcb"]
+atlas = ExtResource("1_mptqy")
+region = Rect2(700, 40, 100, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_edfvj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbahb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sl4d4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsinr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwk0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7rjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bim68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mooyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gljcb")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mysoa"]
+radius = 7.07107
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_rtgwd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(1.49, 1.45)
+sprite_frames = SubResource("SpriteFrames_edfvj")
+animation = &"Walk"
+autoplay = "Walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_mysoa")
+
+[node name="dash_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
